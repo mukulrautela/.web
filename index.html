@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Properties - Your Trusted Property Partner</title>
+    <link rel="stylesheet" href="web.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-home"></i>
+                <span>Prime Properties</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#properties" class="nav-link">Properties</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a href="admin.html" class="nav-link" style="background: #e74c3c; color: white; padding: 10px 20px; border-radius: 25px; font-weight: 600; box-shadow: 0 3px 10px rgba(231, 76, 60, 0.3);">
+                        <i class="fas fa-plus-circle"></i> Add Property
+                    </a>
+                </li> -->
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Grow up Reality</h1>
+            <p>Discover the perfect home, office, or investment property with our expert guidance</p>
+     
+      <div class="search-box">
+      <input type="text" placeholder="Search by location, property type, or price range..." id="searchInput">
+      <button class="search-btn" type="button">
+      <i class="fas fa-search"></i>
+      </button>
+      </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <h3>200+</h3>
+                    <p>Properties Sold</p>
+                </div>
+                <div class="stat">
+                    <h3>500+</h3>
+                    <p>Happy Clients</p>
+                </div>
+                <div class="stat">
+                    <h3>5+</h3>
+                    <p>Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Property Sales</h3>
+                    <p>Comprehensive property sales services with market analysis and competitive pricing.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-key"></i>
+                    <h3>Property Rentals</h3>
+                    <p>Find the perfect rental property with our extensive portfolio and tenant screening.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Investment Advisory</h3>
+                    <p>Expert advice on real estate investments and market trends analysis.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-file-contract"></i>
+                    <h3>Legal Support</h3>
+                    <p>Complete legal documentation and contract support for all property transactions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section id="properties" class="properties">
+        <div class="container">
+            <h2>Featured Properties</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="sale">For Sale</button>
+                <button class="filter-btn" data-filter="rent">For Rent</button>
+                <button class="filter-btn" data-filter="commercial">Commercial</button>
+                <button class="filter-btn" data-filter="plots">Plots</button>
+            </div>
+            <div class="properties-grid" id="propertiesGrid">
+                <!-- Properties will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Prime Properties</h2>
+                    <p>With over 15 years of experience in the real estate market, Prime Properties has been helping clients find their perfect properties. We specialize in residential, commercial, and investment properties across the city.</p>
+                    <p>Our team of experienced professionals provides personalized service, market insights, and comprehensive support throughout your property journey.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Licensed & Certified</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>24/7 Support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Market Expertise</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Property Office">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>123 Property Street, Downtown, City 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@primeproperties.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Working Hours</h4>
+                            <p>Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div id="contactMessage"></div>
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Your Phone">
+                    </div>
+                    <div class="form-group">
+                        <select id="service" name="service" required>
+                            <option value="">Select Service</option>
+                            <option value="buy">Buy Property</option>
+                            <option value="sell">Sell Property</option>
+                            <option value="rent">Rent Property</option>
+                            <option value="investment">Investment Advisory</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Prime Properties</h3>
+                    <p>Your trusted partner in real estate for over 15 years.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="http://grow_up_reality"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#properties">Properties</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Property Sales</a></li>
+                        <li><a href="#">Property Rentals</a></li>
+                        <li><a href="#">Investment Advisory</a></li>
+                        <li><a href="#">Legal Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter for the latest property updates.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="nistishrealstate@gmail.com">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Prime Properties. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- <script src="web.js"></script> -->
+    <script src="site.js"></script>
+</body>
+</html>
