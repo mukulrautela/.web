@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Property</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .back-btn {
+            background: #6c757d;
+        }
+        .success {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    
+    <div style="margin-bottom: 30px;">
+        <a href="web.html" class="back-btn" style="text-decoration: none; display: inline-block; margin-right: 10px;">← Back to Website</a>
+        <button onclick="showMessages()" style="background: #28a745;">View Messages</button>
+        <button onclick="showAddProperty()" style="background: #007bff;">Add Property</button>
+    </div>
+    
+    <div id="message"></div>
+    
+    <!-- Messages Section -->
+    <div id="messagesSection" style="display: none;">
+        <h2>Contact Messages</h2>
+        <div id="messagesList"></div>
+    </div>
+    
+    <!-- Add Property Section -->
+    <div id="addPropertySection">
+        <form id="propertyForm">
+            <div class="form-group">
+                <label>Property Name:</label>
+                <input type="text" id="title" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Location:</label>
+                <input type="text" id="location" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Price:</label>
+                <input type="text" id="price" placeholder="e.g., ₹50,00,000" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Type:</label>
+                <select id="type" required>
+                    <option value="">Choose...</option>
+                    <option value="sale">For Sale</option>
+                    <option value="rent">For Rent</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Category:</label>
+                <select id="category" required>
+                    <option value="">Choose...</option>
+                    <option value="residential">House/Apartment</option>
+                    <option value="commercial">Office/Shop</option>
+                    <option value="plots">Land/Plot</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Photo:</label>
+                <input type="file" id="imageFile" accept="image/*" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Details:</label>
+                <input type="text" id="features" placeholder="e.g., 3 Beds • 2 Baths • 1200 sqft" required>
+            </div>
+            
+            <button type="submit">Add Property</button>
+            <button type="button" class="back-btn" onclick="window.location.href='web.html'">Back to Website</button>
+        </form>
+
+        <h2 style="margin-top:30px;">Property List</h2>
+        <div id="propertyList"></div>
+    </div>
+
+    <script>
+        // Load existing properties
+        let properties = JSON.parse(localStorage.getItem('websiteProperties') || '[]');
+        
+        // If no properties exist, add some default ones
+        if (properties.length === 0) {
+            properties = [
+                {
+                    id: 1,
+                    title: "Modern Downtown Apartment",
+                    location: "Downtown District",
+                    price: "₹3,75,00,000",
+                    type: "sale",
+                    category: "residential",
+                    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    features: "3 Beds • 2 Baths • 1,200 sqft"
+                },
+                {
+                    id: 2,
+                    title: "Luxury Villa with Pool",
+                    location: "Suburban Heights",
+                    price: "₹7,08,00,000",
+                    type: "sale",
+                    category: "residential",
+                    image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    features: "4 Beds • 3 Baths • 2,500 sqft"
+                },
+                {
+                    id: 3,
+                    title: "Cozy Studio Apartment",
+                    location: "Noida",
+                    price: "₹1,00,000/month",
+                    type: "rent",
+                    category: "residential",
+                    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    features: "1 Bed • 1 Bath • 600 sqft"
+                }
+            ];
+            localStorage.setItem('websiteProperties', JSON.stringify(properties));
+        }
+
+        // Render property list
+        function renderProperties() {
+            const propertyList = document.getElementById('propertyList');
+            if (properties.length === 0) {
+                propertyList.innerHTML = "<p>No properties added yet.</p>";
+                return;
+            }
+            
+            propertyList.innerHTML = properties.map(p => `
+                <div style="border:1px solid #ddd; padding:15px; margin-bottom:10px; border-radius:5px; background:#fff;">
+                    <h3>${p.title}</h3>
+                    <p><strong>Location:</strong> ${p.location}</p>
+                    <p><strong>Price:</strong> ${p.price}</p>
+                    <p><strong>Type:</strong> ${p.type}</p>
+                    <p><strong>Category:</strong> ${p.category}</p>
+                    <p><strong>Features:</strong> ${p.features}</p>
+                    <img src="${p.image}" style="width:100%; max-width:300px; border-radius:5px; margin:10px 0;">
+                    <button onclick="deleteProperty(${p.id})" style="background:#dc3545; color:white; border:none; padding:5px 10px; border-radius:3px; cursor:pointer;">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        // Form submission with file upload
+        document.getElementById('propertyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const fileInput = document.getElementById('imageFile');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const newProperty = {
+                        id: Date.now(),
+                        title: document.getElementById('title').value,
+                        location: document.getElementById('location').value,
+                        price: document.getElementById('price').value,
+                        type: document.getElementById('type').value,
+                        category: document.getElementById('category').value,
+                        image: event.target.result, // Base64 image string
+                        features: document.getElementById('features').value
+                    };
+
+                    properties.push(newProperty);
+                    localStorage.setItem('websiteProperties', JSON.stringify(properties));
+
+                    document.getElementById('message').innerHTML = '<div class="success">Property added successfully! Go back to website to see it.</div>';
+                    document.getElementById('propertyForm').reset();
+                    renderProperties();
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Delete property
+        function deleteProperty(id) {
+            if (confirm("Are you sure you want to delete this property?")) {
+                properties = properties.filter(p => p.id !== id);
+                localStorage.setItem('websiteProperties', JSON.stringify(properties));
+                renderProperties();
+            }
+        }
+
+        // Show messages
+        function showMessages() {
+            document.getElementById('addPropertySection').style.display = 'none';
+            document.getElementById('messagesSection').style.display = 'block';
+            loadMessages();
+        }
+
+        // Show add property
+        function showAddProperty() {
+            document.getElementById('messagesSection').style.display = 'none';
+            document.getElementById('addPropertySection').style.display = 'block';
+            renderProperties();
+        }
+
+        // Load messages
+        function loadMessages() {
+            const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+            const messagesList = document.getElementById('messagesList');
+            
+            if (messages.length === 0) {
+                messagesList.innerHTML = '<p>No messages yet.</p>';
+                return;
+            }
+            
+            messagesList.innerHTML = messages.map(msg => `
+                <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; background: #f9f9f9;">
+                    <h3>${msg.name}</h3>
+                    <p><strong>Email:</strong> ${msg.email}</p>
+                    <p><strong>Phone:</strong> ${msg.phone || 'Not provided'}</p>
+                    <p><strong>Service:</strong> ${msg.service}</p>
+                    <p><strong>Message:</strong> ${msg.message}</p>
+                    <p><strong>Date:</strong> ${msg.date}</p>
+                    <button onclick="deleteMessage(${msg.id})" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        // Delete message
+        function deleteMessage(id) {
+            if (confirm('Are you sure you want to delete this message?')) {
+                let messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+                messages = messages.filter(msg => msg.id !== id);
+                localStorage.setItem('contactMessages', JSON.stringify(messages));
+                loadMessages();
+            }
+        }
+
+        // Initial render
+        renderProperties();
+    </script>
+</body>
+</html>
