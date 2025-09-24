@@ -106,7 +106,9 @@ html {
 
 /* ===== HERO SECTION ===== */
 .hero {
-    height: 100vh;
+    /* Offset for fixed navbar so title isn't hidden */
+    padding-top: 70px;
+    min-height: calc(100vh - 70px);
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     display: flex;
     align-items: center;
@@ -141,6 +143,7 @@ html {
     font-weight: 700;
     margin-bottom: 1rem;
     animation: fadeInUp 1s ease;
+    overflow-wrap: anywhere;
 }
 
 .hero p {
@@ -735,6 +738,10 @@ html {
 }
 
 @media (max-width: 480px) {
+    .hero {
+        padding-top: calc(70px + env(safe-area-inset-top, 0px));
+        min-height: calc(100vh - 70px - env(safe-area-inset-top, 0px));
+    }
     .hero h1 {
         font-size: 2rem;
     }
